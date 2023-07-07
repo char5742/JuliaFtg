@@ -18,7 +18,7 @@ function ai_player(url::String, ai::AIInterface, player_number::Bool, player_nam
         end
         @show fetch(t)
     catch e
-        @error e
+        @error exception = (e, catch_backtrace())
     end
 end
 
