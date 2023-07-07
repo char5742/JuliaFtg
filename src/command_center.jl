@@ -86,7 +86,7 @@ function create_keys!(command_center::CommandCenter, str::String)
 end
 
 function action_to_command!(command_center::CommandCenter, str::String)
-    if str == "F||WARD_WALK"
+    if str == "FORWARD_WALK"
         create_keys!(command_center, "6")
     elseif str == "DASH"
         create_keys!(command_center, "6 5 6")
