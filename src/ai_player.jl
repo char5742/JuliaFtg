@@ -3,10 +3,10 @@ AIプレイヤーの実装
 player_number: player1 -> 1, player2 -> 0
               
 """
-function ai_player(url::String, ai::AIInterface, player_number::Bool, player_name::String, is_blind::Bool)
+function ai_player(url::String, ai::AIInterface, player_number::Bool, player_name::String)
     try
         client = ServiceBlockingClient(url)
-        request = InitializeRequest(; player_number=player_number, player_name=player_name, is_blind=is_blind)
+        request = InitializeRequest(; player_number=player_number, player_name=player_name, is_blind=is_blind(ai))
         response, t = Initialize(client, request)
         @show fetch(t)
         player_uuid = response.player_uuid
