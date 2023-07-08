@@ -7,7 +7,8 @@ using .ServiceClients
 import .ServiceClients: InitializeRequest, Initialize,
     ParticipateRequest, Participate,
     PlayerInput, Input,
-    RunGameRequest, RunGame
+    RunGameRequest, RunGame,
+    SpectateRequest, Spectate
 include("command_center.jl")
 export CommandCenter, get_skill_flag, get_skill_key, skill_cancel!, command_call!, set_frame_data!
 include("ai_interface.jl")
