@@ -1,6 +1,6 @@
 module Action
 @enum ActionEnum begin
-    NEUTRAL =1
+    NEUTRAL
     STAND
     FORWARD_WALK
     DASH
