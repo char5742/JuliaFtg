@@ -9,7 +9,7 @@ function run_game(url::String, ;
         player_1=player_1, player_2=player_2,
         game_number=game_number
     )
-    RunGame(client, request)
+    fetch(RunGame(client, request))
     client
 end
 
