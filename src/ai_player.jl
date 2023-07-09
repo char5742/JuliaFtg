@@ -7,15 +7,15 @@ function ai_player(url::String, ai::AIInterface, player_number::Bool, player_nam
     client = ServiceBlockingClient(url)
     request = InitializeRequest(; player_number=player_number, player_name=player_name, is_blind=is_blind(ai))
     response, t = Initialize(client, request)
-    @show fetch(t)
+    fetch(t)
     player_uuid = response.player_uuid
     request = ParticipateRequest(; player_uuid=player_uuid)
     stream, t = Participate(client, request)
-    @show stream
+
     for state in stream
         proccess_state(client, state, ai, player_number, player_uuid)
     end
-    @show fetch(t)
+    fetch(t)
 end
 
 function proccess_state(client::ServiceBlockingClient, state, ai::T, player_number::Bool, player_uuid::String) where {T<:AIInterface}
