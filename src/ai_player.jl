@@ -42,8 +42,11 @@ function processing(client::ServiceBlockingClient, state, ai::T, player_uuid) wh
 
     processing!(ai)
     key = input(ai)
-    _, t = Input(client, PlayerInput(; player_uuid=player_uuid, input_key=convert_key(key)))
-    fetch(t)
+    try
+        _, t = Input(client, PlayerInput(; player_uuid=player_uuid, input_key=convert_key(key)))
+        fetch(t)
+    catch
+    end
 end
 
 function round_end(state, ai::T) where {T<:AIInterface}
