@@ -192,7 +192,7 @@ end
 
 function get_skill_key(command_center::CommandCenter)
     if get_skill_flag(command_center)
-        pop!(command_center.skill_keys)
+        popfirst!(command_center.skill_keys)
     else
         Key()
     end
