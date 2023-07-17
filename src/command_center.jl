@@ -41,7 +41,7 @@ end
 function create_keys!(command_center::CommandCenter, str::String)
     buf = nothing
     commands = map(String, split(str, " "))
-    if is_front(command_center.frame_data, command_center.player_number)
+    if !is_front(command_center.frame_data, command_center.player_number)
         commands = reverse_key(commands)
     end
 
