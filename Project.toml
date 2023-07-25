@@ -1,7 +1,7 @@
 name = "JuliaFtg"
 uuid = "61f70669-bab4-4eaa-b8cf-c517727fe15f"
 authors = ["char5742 <f.shuuma@gmail.com>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
