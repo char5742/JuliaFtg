@@ -70,7 +70,7 @@ function create_keys!(command_center::CommandCenter, str::String)
             buf.U = true
         end
 
-        if index + 2 < length(commands) && commands[index+1] == "_"
+        if index + 2 <= length(commands) && commands[index+1] == "_"
             index += 2
         end
         if commands[index] == "A"
@@ -96,7 +96,7 @@ function action_to_command!(command_center::CommandCenter, str::String)
         create_keys!(command_center, "2")
     elseif str == "JUMP"
         create_keys!(command_center, "8")
-    elseif str == "F||_JUMP"
+    elseif str == "FOR_JUMP"
         create_keys!(command_center, "9")
     elseif str == "BACK_JUMP"
         create_keys!(command_center, "7")
