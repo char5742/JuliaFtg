@@ -6,7 +6,7 @@ mutable struct Key
     R::Bool
     D::Bool
     L::Bool
-    Key(key) = new(key.A, key.B, key.C, key.U, key.R, key.D, key.L)
-    Key() = new(false, false, false, false, false, false, false)
 end
 
+Key(key) = Key(key.A, key.B, key.C, key.U, key.R, key.D, key.L)
+Key() = Key(false, false, false, false, false, false, false)
