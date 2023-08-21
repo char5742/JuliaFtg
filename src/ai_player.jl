@@ -20,22 +20,15 @@ end
 
 function proccess_state(client::ServiceBlockingClient, state, ai::T, player_number::Bool, player_uuid::String) where {T<:AIInterface}
     flag = Struct.FlagEnum(state.state_flag)
-    flag == Struct.Flag.INITIALIZE && initialize(client, state, ai, player_number, player_uuid)
+    flag == Struct.Flag.INITIALIZE && initialize(client, state, ai, player_number)
     flag == Struct.Flag.PROCESSING && processing(client, state, ai, player_uuid)
     flag == Struct.Flag.ROUND_END && round_end(state, ai)
     flag == Struct.Flag.GAME_END && game_end(state, ai)
 end
 
-function initialize(client::ServiceBlockingClient,state, ai::T, player_number, player_uuid) where {T<:AIInterface}
+function initialize(client::ServiceBlockingClient,state, ai::T, player_number) where {T<:AIInterface}
     initialize!(ai, Struct.GameData(state.game_data), player_number)
-    key = Key(
-        true, true, true, true, true, true, true
-    )
-    try
-        _, t = Input(client, PlayerInput(; player_uuid=player_uuid, input_key=convert_key(key)))
-        fetch(t)
-    catch
-    end
+    StartRound(client, StartRoundRequest())
 end
 
 function processing(client::ServiceBlockingClient, state, ai::T, player_uuid) where {T<:AIInterface}

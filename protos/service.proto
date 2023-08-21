@@ -59,6 +59,8 @@ message PlayerInput {
 	GrpcKey input_key = 2;
 }
 
+message StartRoundRequest {}
+
 service Service {
 	rpc RunGame (RunGameRequest) returns (google.protobuf.Empty) {}
 	rpc Spectate (SpectateRequest) returns (stream SpectatorGameState) {}
@@ -66,4 +68,5 @@ service Service {
 	rpc Initialize (InitializeRequest) returns (InitializeResponse) {}
 	rpc Participate (ParticipateRequest) returns (stream PlayerGameState) {}
 	rpc Input (PlayerInput) returns (google.protobuf.Empty) {}
+	rpc StartRound (StartRoundRequest) returns (google.protobuf.Empty) {}
 }

@@ -344,13 +344,46 @@ function Base.getproperty(obj::PlayerInput, name::Symbol)
     end
 end
 
+mutable struct StartRoundRequest <: ProtoType
+    __protobuf_jl_internal_meta::ProtoMeta
+    __protobuf_jl_internal_values::Dict{Symbol,Any}
+    __protobuf_jl_internal_defaultset::Set{Symbol}
+
+    function StartRoundRequest(; kwargs...)
+        obj = new(meta(StartRoundRequest), Dict{Symbol,Any}(), Set{Symbol}())
+        values = obj.__protobuf_jl_internal_values
+        symdict = obj.__protobuf_jl_internal_meta.symdict
+        for nv in kwargs
+            fldname, fldval = nv
+            fldtype = symdict[fldname].jtyp
+            (fldname in keys(symdict)) || error(string(typeof(obj), " has no field with name ", fldname))
+            if fldval !== nothing
+                values[fldname] = isa(fldval, fldtype) ? fldval : convert(fldtype, fldval)
+            end
+        end
+        obj
+    end
+end # mutable struct StartRoundRequest
+const __meta_StartRoundRequest = Ref{ProtoMeta}()
+function meta(::Type{StartRoundRequest})
+    ProtoBuf.metalock() do
+        if !isassigned(__meta_StartRoundRequest)
+            __meta_StartRoundRequest[] = target = ProtoMeta(StartRoundRequest)
+            allflds = Pair{Symbol,Union{Type,String}}[]
+            meta(target, StartRoundRequest, allflds, ProtoBuf.DEF_REQ, ProtoBuf.DEF_FNUM, ProtoBuf.DEF_VAL, ProtoBuf.DEF_PACK, ProtoBuf.DEF_WTYPES, ProtoBuf.DEF_ONEOFS, ProtoBuf.DEF_ONEOF_NAMES)
+        end
+        __meta_StartRoundRequest[]
+    end
+end
+
 # service methods for Service
 const _Service_methods = MethodDescriptor[
         MethodDescriptor("RunGame", 1, RunGameRequest, ProtoBuf.google.protobuf.Empty),
         MethodDescriptor("Spectate", 2, SpectateRequest, Channel{SpectatorGameState}),
         MethodDescriptor("Initialize", 3, InitializeRequest, InitializeResponse),
         MethodDescriptor("Participate", 4, ParticipateRequest, Channel{PlayerGameState}),
-        MethodDescriptor("Input", 5, PlayerInput, ProtoBuf.google.protobuf.Empty)
+        MethodDescriptor("Input", 5, PlayerInput, ProtoBuf.google.protobuf.Empty),
+        MethodDescriptor("StartRound", 6, StartRoundRequest, ProtoBuf.google.protobuf.Empty)
     ] # const _Service_methods
 const _Service_desc = ServiceDescriptor("service.Service", 1, _Service_methods)
 
@@ -381,4 +414,7 @@ Participate(stub::ServiceBlockingStub, controller::ProtoRpcController, inp::Part
 Input(stub::ServiceStub, controller::ProtoRpcController, inp::PlayerInput, done::Function) = call_method(stub.impl, _Service_methods[5], controller, inp, done)
 Input(stub::ServiceBlockingStub, controller::ProtoRpcController, inp::PlayerInput) = call_method(stub.impl, _Service_methods[5], controller, inp)
 
-export RunGameRequest, SpectateRequest, SpectatorGameState, InitializeRequest, InitializeResponse, ParticipateRequest, PlayerGameState, PlayerInput, Service, ServiceStub, ServiceBlockingStub, RunGame, Spectate, Initialize, Participate, Input
+StartRound(stub::ServiceStub, controller::ProtoRpcController, inp::StartRoundRequest, done::Function) = call_method(stub.impl, _Service_methods[6], controller, inp, done)
+StartRound(stub::ServiceBlockingStub, controller::ProtoRpcController, inp::StartRoundRequest) = call_method(stub.impl, _Service_methods[6], controller, inp)
+
+export RunGameRequest, SpectateRequest, SpectatorGameState, InitializeRequest, InitializeResponse, ParticipateRequest, PlayerGameState, PlayerInput, StartRoundRequest, Service, ServiceStub, ServiceBlockingStub, RunGame, Spectate, Initialize, Participate, Input, StartRound

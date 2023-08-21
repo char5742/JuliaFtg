@@ -89,6 +89,16 @@ import .service: Input
 Input(client::ServiceBlockingClient, inp::service.PlayerInput) = Input(client.stub, client.controller, inp)
 Input(client::ServiceClient, inp::service.PlayerInput, done::Function) = Input(client.stub, client.controller, inp, done)
 
+import .service: StartRound
+"""
+    StartRound
+
+- input: service.StartRoundRequest
+- output: google.protobuf.Empty
+"""
+StartRound(client::ServiceBlockingClient, inp::service.StartRoundRequest) = StartRound(client.stub, client.controller, inp)
+StartRound(client::ServiceClient, inp::service.StartRoundRequest, done::Function) = StartRound(client.stub, client.controller, inp, done)
+
 # end service: service.Service
 
 end # module ServiceClients
