@@ -28,7 +28,11 @@ end
 
 function initialize(client::ServiceBlockingClient,state, ai::T, player_number) where {T<:AIInterface}
     initialize!(ai, Struct.GameData(state.game_data), player_number)
-    StartRound(client, StartRoundRequest())
+    try
+    _, t = StartRound(client, StartRoundRequest())
+    fetch(t)
+    catch
+    end
 end
 
 function processing(client::ServiceBlockingClient, state, ai::T, player_uuid) where {T<:AIInterface}
